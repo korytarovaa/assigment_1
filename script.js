@@ -4,31 +4,31 @@
  * Programming 2022, Interaction Design Bacherlor, Malmö University
  * 
  * This assignment is written by:
- * Name Surname
- * Name Surname
+ * Alzbeta Korytarova
+ * Julia Wallén
  * 
  * 
  * The template contains some sample code exemplifying the template code structure.
  * You can build on top of it, or remove the example values etc.
  * 
- * For instructions, see the Canvas assignment: https://mau.instructure.com/courses/11936/assignments/84965
- * For guidence on how to use the template, see the demo video:
- *
  */
 
 // The state should contain all the "moving" parts of your program, values that change.
 let state = Object.freeze({
-    pointerEvent: { x: 0, y: 0 },
+    pointerEvent: { x: 0.5, y: 0.5 },
+    defenderSize: { height: 150, width: 150 },
+    defenderColor: "",
+    defenderOpacity: "100 %"
 });
 
 
 // The settings should contain all of the "fixed" parts of your programs, like static HTMLElements and paramaters.
 const settings = Object.freeze({
     sample: {
-        height: 100,
-        width: 100,
-        element: document.querySelector("#sample-output"),
+        HTMelement: document.querySelector("#defence-circle"),
+
     },
+
 });
 
 
@@ -47,7 +47,8 @@ function updateState(newState) {
  * @param {number} min 
  * @param {number} max 
  * @returns number
- */
+
+*/
 function scale(num, min, max) {
     if (num < min) return 0;
     if (num > max) return 1;
@@ -55,12 +56,13 @@ function scale(num, min, max) {
 }
 
 /**
- * Return `num` transformed from the normalised 0..1 form back to the min..max form.
- * @param {number} num
- * @param {number} min 
- * @param {number} max 
- * @returns number
- */
+// Return `num` transformed from the normalised 0..1 form back to the min..max form.
+* @param { number } num
+* @param { number } min
+* @param { number } max
+* @returns number
+*/
+
 function toAbsolute(num, min, max) {
     if (num < 0) return min;
     if (num > 1) return max;
@@ -89,11 +91,11 @@ function loop() {
 
     window.requestAnimationFrame(loop);
 }
-
+// loop should probablly be the circle shrinking because that will change continuously
 
 /**
  * Setup is run once, at the start of the program. It sets everything up for us!
- */
+ 
 function setup() {
     const { sample } = settings;
     sample.element.style.height = `${sample.height}px`;
@@ -105,6 +107,27 @@ function setup() {
 
     loop();
 }
+*/
+
+// function setup() {
+//     const { defender } = settings;
+//     defender.HTMLElement.style.height = `150px`;
+//     defender.HTMLElement.style.width = `150px`;
+//     defender.HTMLElement.style.backgroundColor = "rgb(31, 201, 210)"
 
 
-setup(); // Always remember to call setup()!
+//     loop(); //calls loop once, but the loop then repeat itself everytime the screen updates
+// }
+
+
+// setup(); // Always remember to call setup()!
+
+
+document.addEventListener("pointermove", pointerPosition)
+
+
+function pointerPosition(event) {
+    const pointer = {
+        x: event.clientX,
+        y: event.clientY
+    }}
